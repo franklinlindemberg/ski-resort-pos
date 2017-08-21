@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="static/css/main.css">
+    </head>
+    <body>
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">Ski Resort POS</a>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li><a href="#">Print</a></li>
+                        <li><a href="#">Review</a></li>
+                        <li onclick="NewInvoice()"><a style="cursor: pointer;">New Invoice</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="#">Brand</a></li>
+                    </ul>
+                </div><!-- /.navbar-collapse -->
+            </div><!-- /.container-fluid -->
+        </nav>
+
+        <div class="container-fluid">
+            <div class="row">
+                <div id="categories-div" class="col-md-2">
+                    Categories
+                    <div id="categories"></div>
+                </div>
+                <div id="products-div" class="col-md-5">
+                    Products
+                    <div id="products"></div>
+                </div>
+                <div id="payment-div" class="col-md-7" style="display: none;">
+                    <div class="jumbotron" style="text-align: center;">
+                        <h1>Payment</h1>
+                    </div>
+                    <div id="payments" class="col-md-7 col-md-offset-3">
+                    </div>
+                    <div class="col-md-3 col-md-offset-3 button" style="cursor: pointer;" onclick="OnCancelClick()"> <span><b>Back</b></span> </div>
+                    <div class="col-md-3 col-md-offset-1 button " style="cursor: pointer;" onclick="OnFinishClick()"> <span><b>Finish</b></span> </div>
+                </div>
+                <div id="buttons" class="col-md-3">
+                    <div class="col-md-11 button"> <span><b>Terminal Express</b></span> </div>
+                    <div class="col-md-11 button"> <span><b>USD</b></span> </div>
+                    <div class="col-md-11 button"> <span><b>Cash Express</b></span> </div>
+                    <div class="col-md-11 button" style="cursor: pointer;" onclick="OnPayClick()"> <span><b>Pay</b></span> </div>
+                    <div class="col-md-11">
+                        <div class="col-md-8" style="height:100px;">
+                            <div class="col-md-12 button2" style="cursor: pointer;" onclick="OnRemoveClick()"><span><b>Remove</b></span></div>
+                            <div class="col-md-12 button2"> <span><b>Discount</b></span></div>
+                        </div>
+                        <div class="col-md-3 col-md-offset-1 button3"> <span><b>-</b></span> </div>
+                    </div>
+
+                    <div class="col-md-3 button" style="cursor: pointer;" onclick="OnNumberClick('7')"> <span><b>7</b></span> </div>
+                    <div class="col-md-3 col-md-offset-1 button" style="cursor: pointer;" onclick="OnNumberClick('8')"> <span><b>8</b></span> </div>
+                    <div class="col-md-3 col-md-offset-1 button" style="cursor: pointer;" onclick="OnNumberClick('9')"> <span><b>9</b></span> </div>
+                    <div class="col-md-3 button" style="cursor: pointer;" onclick="OnNumberClick('4')"> <span><b>4</b></span> </div>
+                    <div class="col-md-3 col-md-offset-1 button" style="cursor: pointer;" onclick="OnNumberClick('5')"> <span><b>5</b></span> </div>
+                    <div class="col-md-3 col-md-offset-1 button" style="cursor: pointer;" onclick="OnNumberClick('6')"> <span><b>6</b></span> </div>
+                    <div class="col-md-3 button number" style="cursor: pointer;" onclick="OnNumberClick('1')"> <span><b>1</b></span> </div>
+                    <div class="col-md-3 col-md-offset-1 button" style="cursor: pointer;" onclick="OnNumberClick('2')"> <span><b>2</b></span> </div>
+                    <div class="col-md-3 col-md-offset-1 button" style="cursor: pointer;" onclick="OnNumberClick('3')"> <span><b>3</b></span> </div>
+                    <div class="col-md-3 button"> <span><b>.</b></span> </div>
+                    <div class="col-md-3 col-md-offset-1 button" style="cursor: pointer;" onclick="OnNumberClick('0')"> <span><b>0</b></span> </div>
+                    <div class="col-md-3 col-md-offset-1 button" style="cursor: pointer;" onclick="OnEnterClick()"> <span><b>Enter</b></span> </div>
+                </div>
+                <div id="invoice" class="col-md-2">
+                    <div class="list">
+                        <table id="invoice-list" class="table table-condensed table-hover">
+                            <tr>
+                                <th class="col-md-1">Qty</th>
+                                <th class="col-md-9">Product</th>
+                                <th class="col-md-2">Price</th>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="price-detail">
+                        <table class="table table-borderless">
+                            <tr>
+                                <th class="col-md-3"></th>
+                                <th class="col-md-6"></th>
+                                <th class="col-md-2"></th>
+                                <th class="col-md-1"></th>
+                            </tr>
+                            <tr>
+                                <td>Subtotal</td>
+                                <td></td>
+                                <td id="invoice-subtotal">$0.00</td>
+                            </tr>
+                            <tr>
+                                <td>TPS</td>
+                                <td></td>
+                                <td id="invoice-TPS">$0.00</td>
+                            </tr>
+                            <tr>
+                                <td>TVQ</td>
+                                <td></td>
+                                <td id="invoice-TVQ">$0.00</td>
+                            </tr>
+                            <tr>
+                                <td><b>Total</b></td>
+                                <td></td>
+                                <td id="invoice-total">$0.00</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+        <!-- normal script imports etc  -->
+        <!-- jQuery first, then Tether, then Bootstrap JS. -->
+        <script type="text/javascript" src="node_modules/jquery/dist/jquery.js"></script>
+        <script type="text/javascript" src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
+        <!-- Insert this line after script imports -->
+        <script>if (window.module) module = window.module;</script>
+    </body>
+    <script>
+        // You can also require other files to run in this process
+        require('./renderer.js');
+        const ipcRenderer = require('electron').ipcRenderer;
+
+        let Files = require('./static/js/Files.js');
+        let Product = require('./static/js/Product.js');
+        let Category = require('./static/js/Category.js');
+        let Invoice = require('./static/js/Invoice.js');
+        let Payment = require('./static/js/Payment.js');
+        let files = new Files();
+        let invoice = new Invoice();
+        let payment = new Payment();
+
+        //load payments div with payments methods
+        $('#payments').html(payment.LoadDiv());
+
+        //Function that cleans the invoice, cleaning all data related to pthe previous invoice
+        let NewInvoice = function(){
+            invoice.Clear();
+            invoice.UpdatePriceDetails();
+            $('#products').empty();
+            $('.selected-button').removeClass('selected-button');
+            $('#invoice-list > tbody > .clickable-row').remove();
+        };
+        //Function that loads the products of the clicked category, and also highlights it
+        let OnCategoryClick = function(self, category){
+            $('#products').html(Product.LoadDiv(category, files.products));
+            $(self).addClass('selected-button').siblings().removeClass('selected-button');
+        };
+        //Function that adds a product into the invoice
+        let OnProductClick = function(product, price){
+            $('#invoice-list').append(invoice.GetRow(product, price));
+            invoice.AddItem({product, price});
+            invoice.UpdatePriceDetails();
+        };
+        //Function that removes the product from the invoice
+        let OnRemoveClick = function(){
+            invoice.RemoveItem();
+            invoice.UpdatePriceDetails();
+            invoice.selected_row_id = null;
+        };
+        //Function that temporary save the new quantity of the selected product
+        let OnNumberClick = function(number){
+            if(!invoice.selected_row_id) return alert("You haven't selected any item");
+            invoice.new_quantity += number;
+            $(`#product-${invoice.selected_row_id}`).find('.quantity').html(invoice.new_quantity);
+            $(`#product-${invoice.selected_row_id}`).find('.quantity').addClass('warning');
+        };
+        //Function that updates the product quantity using the new quantity selected
+        let OnEnterClick = function(){
+            invoice.UpdateItem();
+            invoice.UpdatePriceDetails();
+        };
+        //Function loads the payment view into the interface
+        let OnPayClick = function(){
+            $('#categories-div').hide();
+            $('#products-div').hide();
+            $('#payment-div').show();
+        };
+        //Function that go back to product/category list view
+        let OnCancelClick = function(){
+            $('#payment-div').hide();
+            $('#categories-div').show();
+            $('#products-div').show();
+        };
+        //Function that finishes the current invoice and starts a new one
+        let OnFinishClick = function(){
+            if($.isEmptyObject(invoice.list)) return alert("There isn't any item in the chart");
+            let payment = $('#payments').find('input[name=optionsPayment]:checked') ? $('#payments').find('input[name=optionsPayment]:checked').val() : null;
+
+            if(!payment) return alert("Please select a payment method");
+
+            alert(`Order amount of $${invoice.GetTotal()} paid using ${payment}. Thank you!`);
+            $('#payment-div').hide();
+            $('#categories-div').show();
+            $('#products-div').show();
+            NewInvoice();
+        };
+        //Function that selects a product in the invoice' list and highlight it
+        $('#invoice-list').on('click', '.clickable-row', function(event) {
+            if(invoice.selected_row_id){
+                $(`#product-${invoice.selected_row_id}`).find('.quantity').html(invoice.list[invoice.selected_row_id].quantity);
+                $(`#product-${invoice.selected_row_id}`).find('.quantity').removeClass('warning');
+                invoice.new_quantity = "";
+            }
+            $(this).addClass('info').siblings().removeClass('info');
+            invoice.selected_row_id = this.id.split('-')[1];
+        });
+
+        $(document).ready(function(){
+            //calls the backend method getFiles
+            ipcRenderer.send('getFiles');
+            //when getFiles respond, load its content into the files variable
+            ipcRenderer.on('getFiles', function(event, arg) {
+                for (let i = 0; i < arg.categories.length; i++){
+                    files.categories.push(new Category(arg.categories[i].category));
+                }
+                Object.keys(arg.products).forEach(function(key,index){
+                    for(let i = 0; i < arg.products[key].length; i++){
+                        let product = arg.products[key][i];
+                        if(!files.products[key]) files.products[key] = [];
+                        files.products[key].push(new Product(product.category, product.product, product.column, product.row, product.price));
+                    }
+                });
+                // load the categories div
+                $('#categories').html(Category.LoadDiv(files.categories));
+            });
+        });
+    </script>
+</html>
