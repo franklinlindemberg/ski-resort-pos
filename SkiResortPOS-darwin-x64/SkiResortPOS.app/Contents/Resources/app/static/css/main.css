@@ -1,0 +1,170 @@
+body{
+    background-color: lightgray;
+}
+
+#categories{
+    background-color: darkgray;
+    height: 650px;
+    overflow-y: scroll;
+    margin-top: 10px;
+    padding-left: 22px;
+    border-radius: 20px;
+}
+
+#categories .category{
+    background-color: white;
+    border-style: outset;
+    height:70px;
+    line-height: 60px;
+    width: 140px;
+    margin-top: 10px;
+    text-align: center;
+    cursor: pointer;
+}
+
+#categories .category span {
+    display: inline-block;
+    vertical-align: middle;
+    line-height: normal;
+}
+
+#products{
+    background-color: darkgray;
+    height: 650px;
+    overflow-y: scroll;
+    margin-top: 10px;
+    margin-right: -15px;
+    padding-left: 15px;
+    border-radius: 20px;
+}
+
+#products .product{
+    background-color: white;
+    margin-right: 15px;
+    border-style: outset;
+    height:70px;
+    line-height: 60px;
+    width: 110px;
+    margin-top: 10px;
+    text-align: center;
+    cursor: pointer;
+}
+
+#products .price{
+    margin-top: -15px;
+    margin-left: -18px;
+    line-height: 0px;
+    height:20px;
+    width: 110px;
+    text-align: center;
+}
+
+#products .product span {
+    display: inline-block;
+    line-height: normal;
+    font-size: 80%;
+}
+
+#buttons{
+    padding: 10px;
+}
+#buttons .button{
+    background: linear-gradient(white, darkgray);
+    height:60px;
+    line-height: 60px;
+    margin-top: 10px;
+    text-align: center;
+    border-radius: 10px;
+}
+#buttons .button span {
+    display: inline-block;
+    line-height: normal;
+    font-size: 150%;
+}
+#buttons .button2{
+    background: linear-gradient(white, darkgray);
+    height: 45px;
+    line-height: 45px;
+    margin-top: 10px;
+    text-align: center;
+    border-radius: 10px;
+}
+#buttons .button2 span {
+    display: inline-block;
+    line-height: normal;
+    font-size: 150%;
+}
+#buttons .button3{
+    background: linear-gradient(white, darkgray);
+    height: 100px;
+    line-height: 100px;
+    margin-top: 10px;
+    text-align: center;
+    border-radius: 10px;
+}
+#buttons .button3 span {
+    display: inline-block;
+    line-height: normal;
+    font-size: 150%;
+}
+
+#invoice{
+    margin-left: -40px;
+    margin-top: 15px;
+    width: 250px;
+}
+
+#invoice .list{
+    background-color: white;
+    height: 530px;
+    overflow-y: scroll;
+}
+
+#invoice .price-detail{
+    font-size: 12px;
+    background-color: white;
+    margin-top: 20px;
+    height: 110px;
+    padding-left: 15px;
+}
+
+
+#payments{
+    background-color: darkgray;
+    height: 360px;
+    overflow-y: scroll;
+    margin-top: 10px;
+    padding: 30px;
+    border-radius: 20px;
+}
+
+#payment-div .button{
+    background: linear-gradient(white, darkgray);
+    height:60px;
+    line-height: 60px;
+    margin-top: 10px;
+    text-align: center;
+    border-radius: 10px;
+}
+
+#payments .payment span {
+    display: inline-block;
+    vertical-align: middle;
+    line-height: normal;
+}
+
+.table-borderless > tbody > tr > td,
+.table-borderless > tbody > tr > th,
+.table-borderless > tfoot > tr > td,
+.table-borderless > tfoot > tr > th,
+.table-borderless > thead > tr > td,
+.table-borderless > thead > tr > th {
+    border: none;
+    height:20px;
+    padding:0px;
+    border-top: 0px;
+}
+
+.selected-button{
+    background-color: lightblue !important;
+}
